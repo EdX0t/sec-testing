@@ -1,0 +1,4 @@
+*
+!*.cnf
+!generate_cert.sh
+!.gitignore

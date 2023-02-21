@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+composer install
+#wait-for-it db:3306 -t 45
+cp .env.example .env
+php artisan config:cache && php artisan route:cache && php artisan view:cache
+php artisan migrate --database=mysql --force
+/etc/init.d/php8.2-fpm start
+exec nginx -g "daemon off;"
